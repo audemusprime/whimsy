@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {%block title%}About | Whimsy{%endblock%}
+{%comment%}{%endcomment%} {%block content%}
+<div style="margin-top: 200px">
+  <section>
+    <h2 style="font-size: 3em">About the app</h2>
+    <h1>
+      <small>
+        This was created as one of the projects for my bootcamp, to practice
+        Django. I wanted to create something I knew I'd be interested in using,
+        with minimal distracting elements.
+        <br />
+        Inspiration for the functionality was taken from
+        <a href="https://notion.so">Notion</a>, a popular all-in-one workspace.
+      </small>
+    </h1>
+  </section>
+  <section>
+    <h2 style="font-size: 3em; margin-bottom: 40px">Features</h2>
+    <div class="row">
+      <div class="col">
+        <dt>
+          <big><a href="http://classless.de/">Classless</a></big>
+        </dt>
+        <dd>A classless CSS framework.</dd>
+      </div>
+      <div class="col">
+        <dt>
+          <big>
+            <a href="https://www.postgresql.org/">PostgreSQL</a>
+          </big>
+        </dt>
+        <dd>A nifty database.</dd>
+      </div>
+    </div>
+    <br />
+  </section>
+</div>
+
+{% endblock %}
