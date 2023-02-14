@@ -36,3 +36,8 @@ def pages(request):
         if page.tags.count():
             assoc_tags = page.tags.all()
     return render(request, "page/list.html", {"pages": pages, "tags": assoc_tags})
+
+
+def detail(request, page_id):
+    page = Page.objects.get(id=page_id)
+    return render(request, "page/detail.html", {"page": page})

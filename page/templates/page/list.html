@@ -10,11 +10,15 @@
             <div style="margin-top: 50px">
                 {% for page in pages %}
                     <dt>
-                        <big> {{ page.title }} </big>
+                        <a href="{% url 'detail' page.id %}">
+                            <big> {{ page.title }} </big>
+                        </a>
                     </dt>
                     <dd>
                         <small>
-                            <b>Related tags:</b>
+                            <h4 style="margin: 10px 5px 8px 0; display: inline;">
+                                <b>Related tags:</b>
+                            </h4>
                             {% for tag in tags %}
                                 <span style="background-color: var(--cmed);
                                              padding: 5px;
