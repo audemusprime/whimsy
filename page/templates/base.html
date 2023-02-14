@@ -4,47 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} {% endblock %}</title>
+    <title>
+      {% block title %}
+      {% endblock title %}
+    ⦿ ⦿ Whimsy</title>
     <link rel="stylesheet" href="https://classless.de/classless.css" />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"
-    ></script>
+    <script defer
+            src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
   </head>
-  <body>
+  <body style="height: 100vh; position: relative">
     <header>
       <nav>
         <ul>
           <li>
             <big>
-              <a href="/" style="text-decoration: none">
+              <a href="{% url 'index' %}" style="text-decoration: none">
                 <strong>Whimsy</strong>
               </a>
             </big>
             <ul>
               <li>
-                <a href="{% url 'about' %}" style="text-decoration: none">
-                  About
-                </a>
+                <a href="{% url 'about' %}" style="text-decoration: none">About</a>
               </li>
             </ul>
           </li>
-          <li>
-            <a href="{% url 'login' %}" style="text-decoration: none">Login</a>
-          </li>
-          <li>
-            <a href="{% url 'signup' %}" style="text-decoration: none"
-              >Signup</a
-            >
-          </li>
-          <li class="float-right">
-            <a href="{% url 'logout' %}" style="text-decoration: none"
-              >Logout</a
-            >
-          </li>
+          {% if user.is_authenticated %}
+            <li class="float-right">
+              <a href="{% url 'logout' %}" style="text-decoration: none">Logout</a>
+            </li>
+          {% else %}
+            <li class="float-right">
+              <a href="{% url 'login' %}" style="text-decoration: none">Login</a>
+            </li>
+            <li class="float-right">
+              <a href="{% url 'signup' %}" style="text-decoration: none">Signup</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock%}</main>
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+    <footer style="position: absolute;
+                   margin-bottom: 0;
+                   text-align: center;
+                   color: var(--cmed)">
+      <small>&copy; 2023 Elaine Brossa</small>
+    </footer>
   </body>
 </html>
