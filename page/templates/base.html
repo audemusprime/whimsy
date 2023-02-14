@@ -32,6 +32,14 @@
             <li class="float-right">
               <a href="{% url 'logout' %}" style="text-decoration: none">Logout</a>
             </li>
+            <li class="float-right sticky">
+              <a href="#">▾</a>
+              <ul>
+                <li>
+                  <a href="{% url 'pages' %}" style="text-decoration: none">Your Pages</a>
+                </li>
+              </ul>
+            </li>
           {% else %}
             <li class="float-right">
               <a href="{% url 'login' %}" style="text-decoration: none">Login</a>

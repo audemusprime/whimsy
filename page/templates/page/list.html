@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    Pages
+{% endblock title %}
+{% block content %}
+    <div style="margin-top: 150px;">
+        <section>
+            <h2 style="font-size: 3em">Your Pages</h2>
+            <h3>Everything you've created so far.</h3>
+            <div style="margin-top: 50px">
+                {% for page in pages %}
+                    <dt>
+                        <big> {{ page.title }} </big>
+                    </dt>
+                    <dd>
+                        Code for related tags will go here.
+                    </dd>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock content %}

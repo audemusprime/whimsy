@@ -27,3 +27,8 @@ def signup(request):
     form = UserCreationForm()
     context = {"form": form, "error": error_msg}
     return render(request, "registration/signup.html", context)
+
+
+def pages(request):
+    pages = Page.objects.filter(user=request.user)
+    return render(request, "page/list.html", {"pages": pages})
