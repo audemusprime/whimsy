@@ -31,4 +31,8 @@ def signup(request):
 
 def pages(request):
     pages = Page.objects.filter(user=request.user)
-    return render(request, "page/list.html", {"pages": pages})
+    # iterate through the pages and retrieve associated tags
+    for page in pages:
+        if page.tags.count():
+            assoc_tags = page.tags.all()
+    return render(request, "page/list.html", {"pages": pages, "tags": assoc_tags})

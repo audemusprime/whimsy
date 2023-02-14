@@ -13,7 +13,17 @@
                         <big> {{ page.title }} </big>
                     </dt>
                     <dd>
-                        Code for related tags will go here.
+                        <small>
+                            <b>Related tags:</b>
+                            {% for tag in tags %}
+                                <span style="background-color: var(--cmed);
+                                             padding: 5px;
+                                             margin: 0 5px 0 5px;
+                                             border-radius: 2px">{{ tag.name }}</span>
+                            {% empty %}
+                                <i>No associated tags.</i>
+                            {% endfor %}
+                        </small>
                     </dd>
                 {% endfor %}
             </div>
