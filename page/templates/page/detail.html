@@ -3,7 +3,18 @@
     {{ page.title }}
 {% endblock title %}
 {% block content %}
-    <div style="margin-top:150px;">
-        <big>insert forms here</big>
+    <div class="row" style="margin-top: 150px">
+        <div class="col-4" style="line-height: 3; text-align: center;">
+            {% for tag in tags %}
+                <span style="background-color: var(--cmed);
+                             padding: 5px;
+                             margin: 5px;
+                             border-radius: 2px">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+        <div style="text-align: justify; width: 100%">
+            <h2 style="font-size: 3em; margin-top: 0">{{ page.title }}</h2>
+            {% for block in blocks %}<div style="margin: 10px 0 10px 0">{{ block.content }}</div>{% endfor %}
+        </div>
     </div>
 {% endblock content %}

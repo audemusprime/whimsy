@@ -19,7 +19,7 @@
                             <h4 style="margin: 10px 5px 8px 0; display: inline;">
                                 <b>Related tags:</b>
                             </h4>
-                            {% for tag in tags %}
+                            {% for tag in page.tags.all %}
                                 <span style="background-color: var(--cmed);
                                              padding: 5px;
                                              margin: 0 5px 0 5px;
@@ -27,6 +27,9 @@
                             {% empty %}
                                 <i>No associated tags.</i>
                             {% endfor %}
+                            <br />
+                            <a href="{% url 'update_page' page.id %}">Edit</a>
+                            {% comment %} <a href="{% url 'delete' page.id %}">Delete</a> {% endcomment %}
                         </small>
                     </dd>
                 {% endfor %}

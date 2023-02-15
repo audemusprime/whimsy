@@ -16,13 +16,13 @@ class Page(models.Model):
         alphabet="abcdefghijklmnopqrstuvwxyz0123456789",
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, default="Untitled")
+    title = models.CharField(max_length=100, default="Untitled")
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={"id": self.id})
+        return reverse("detail", kwargs={"page_id": self.id})
 
 
 class Block(models.Model):
@@ -35,7 +35,7 @@ class Block(models.Model):
 
 class Tag(models.Model):
     page = models.ManyToManyField(Page, related_name="tags")
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
