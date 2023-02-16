@@ -3,7 +3,8 @@
     {{ page.title }}
 {% endblock title %}
 {% block content %}
-    <div style="margin-top:150px;" class="row">
+    <h2 style="font-size: 3em; margin: 150px 0 50px 0">Edit {{ page.title }}</h2>
+    <div class="row">
         <div class="col-3"
              id="tag-home"
              style="margin-right: 20px;
@@ -26,7 +27,7 @@
                 {{ title_form }}
                 {{ formset }}
                 <br />
-                <button type="submit" style="width: 100%">Submit</button>
+                <button type="submit" style="width: 100%; margin: auto;">Submit</button>
             </form>
         </div>
     </div>

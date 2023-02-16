@@ -3,7 +3,8 @@
     New Page
 {% endblock title %}
 {% block content %}
-    <div style="margin-top:150px;" class="row">
+    <h2 style="font-size: 3em; margin: 150px 0 50px 0">Create a new page</h2>
+    <div class="row">
         <div>
             <form action="" method="post">
                 {% csrf_token %}
@@ -11,7 +12,7 @@
                 {{ formset.management_form }}
                 {% for form in formset %}{{ form.content }}{% endfor %}
                 <br />
-                <button type="submit" style="width: 100%">Submit</button>
+                <button type="submit" style="width: 100%; margin: auto;">Submit</button>
             </form>
         </div>
     </div>
