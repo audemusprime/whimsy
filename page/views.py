@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import DeleteView
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
@@ -33,11 +34,13 @@ def signup(request):
     return render(request, "registration/signup.html", context)
 
 
+@login_required
 def pages(request):
     pages = Page.objects.filter(user=request.user)
     return render(request, "page/list.html", {"pages": pages})
 
 
+@login_required
 def detail(request, page_id):
     page = Page.objects.get(id=page_id)
     tags = page.tags.all()
@@ -53,6 +56,7 @@ def detail(request, page_id):
     )
 
 
+@login_required
 def create_page(request):
     formset = BlockFormset(queryset=Block.objects.none())
     title_form = TitleForm()
@@ -75,6 +79,7 @@ def create_page(request):
     return render(request, "page/create.html", context)
 
 
+@login_required
 def update_page(request, page_id):
     page = Page.objects.get(id=page_id)
     query = page.blocks.all()
@@ -104,6 +109,7 @@ def update_page(request, page_id):
     return render(request, "page/update.html", context)
 
 
+@login_required
 def delete_page(request, page_id):
     page = get_object_or_404(Page, id=page_id)
     page.delete()
