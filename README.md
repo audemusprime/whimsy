@@ -1,7 +1,7 @@
 # Whimsy
 
 A simplistic app created in a not so simplistic framework.  
-Inspired by the all-in-one workspace [Notion](https://notion.so), Whimsy is focused on providing an experience with minimal distractions.
+Inspired by the all-in-one workspace [Notion](https://notion.so), Whimsy is focused on providing a journaling experience with minimal distractions.
 
 [Give it a look.](https://whimz.herokuapp.com)
 
@@ -37,3 +37,4 @@ pip3 install -r requirements.txt
 - [ ] Fix bug with stuck block deletion on edit page
 - [ ] Add editing and removal of page tags
 - [ ] Add page delete modal
+- [ ] Implement rich text API
