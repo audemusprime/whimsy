@@ -14,4 +14,5 @@ urlpatterns = [
         views.update_page,
         name="update_page",
     ),
+    path("pages/<str:page_id>/delete", views.delete_page, name="delete_page"),
 ]

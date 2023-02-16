@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import DeleteView
 from django.contrib.auth import login
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
@@ -83,15 +84,13 @@ def update_page(request, page_id):
         formset = BlockFormset(request.POST, queryset=query)
         title_form = TitleForm(request.POST, instance=page)
 
-        if title_form.is_valid():
-            title_form.save()
-            return redirect("detail", page_id=page_id)
-
-        if formset.is_valid():
-            for form in formset.forms:
-                form.instance.page_id = page_id
-            formset.save()
-            return redirect("detail", page_id=page_id)
+        if title_form.is_valid() and formset.is_valid():
+            obj = title_form.save()
+            blocks = formset.save(commit=False)
+            for form in blocks:
+                form.page_id = obj.id
+                form.save()
+                return redirect("detail", page_id=page_id)
     else:
         formset = BlockFormset(queryset=query)
         title_form = TitleForm(instance=page)
@@ -103,6 +102,12 @@ def update_page(request, page_id):
         "new_tag": new_tag,
     }
     return render(request, "page/update.html", context)
+
+
+def delete_page(request, page_id):
+    page = get_object_or_404(Page, page_id)
+    page.delete()
+    return redirect("index")
 
 
 @csrf_exempt
