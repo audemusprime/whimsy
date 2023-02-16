@@ -52,6 +52,28 @@ def detail(request, page_id):
     )
 
 
+def create_page(request):
+    formset = BlockFormset(queryset=Block.objects.none())
+    title_form = TitleForm()
+    user = request.user
+    if request.method == "POST":
+        title_form = TitleForm(request.POST)
+        formset = BlockFormset(request.POST)
+        if title_form.is_valid() and formset.is_valid():
+            title_form.instance.user_id = user.id
+            page = title_form.save()
+            blocks = formset.save(commit=False)
+            for block in blocks:
+                block.page_id = page.id
+                block.save()
+            return redirect("detail", page_id=page.id)
+    context = {
+        "title_form": title_form,
+        "formset": formset,
+    }
+    return render(request, "page/create.html", context)
+
+
 def update_page(request, page_id):
     page = Page.objects.get(id=page_id)
     query = page.blocks.all()
@@ -59,6 +81,12 @@ def update_page(request, page_id):
     new_tag = TagForm()
     if request.method == "POST":
         formset = BlockFormset(request.POST, queryset=query)
+        title_form = TitleForm(request.POST, instance=page)
+
+        if title_form.is_valid():
+            title_form.save()
+            return redirect("detail", page_id=page_id)
+
         if formset.is_valid():
             for form in formset.forms:
                 form.instance.page_id = page_id
@@ -66,9 +94,11 @@ def update_page(request, page_id):
             return redirect("detail", page_id=page_id)
     else:
         formset = BlockFormset(queryset=query)
+        title_form = TitleForm(instance=page)
     context = {
         "page": page,
         "formset": formset,
+        "title_form": title_form,
         "tags": tags,
         "new_tag": new_tag,
     }

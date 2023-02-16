@@ -9,6 +9,7 @@ class TitleForm(ModelForm):
         label="",
         widget=forms.TextInput(attrs={"cols": 90, "placeholder": "Untitled"}),
     )
+    user = forms.HiddenInput()
 
     class Meta:
         model = Page
@@ -27,14 +28,15 @@ class BlockForm(ModelForm):
 
 BlockFormset = modelformset_factory(
     Block,
-    extra=2,
+    extra=1,
     can_delete=True,
     fields=["content"],
     widgets={
         "content": forms.Textarea(
             attrs={
                 "cols": 100,
-                "rows": 5,
+                "rows": 2,
+                "placeholder": "Add a new block",
             }
         )
     },
