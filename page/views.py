@@ -105,7 +105,7 @@ def update_page(request, page_id):
 
 
 def delete_page(request, page_id):
-    page = get_object_or_404(Page, page_id)
+    page = get_object_or_404(Page, id=page_id)
     page.delete()
     return redirect("index")
 
